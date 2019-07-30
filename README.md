@@ -16,10 +16,12 @@ e. Sort/Filter flyers by attributes, includes
    ...
 
 Technical Spec:
-i) Language for Frontend: Javascript
-ii) Language for Backend: Javascript
-iii) Database service: <TBD>
-iiii) Deployment: GCP
+i)   Frontend: HTML/CSS, Javascript (Bootstrap, Momentjs, JQuery)
+ii)  Backend: Javascript (Express, Nodejs)
+iii) Database service: GCP Datastore
+iv)  Deployment: GCP App Engine
+v)   Library: HighSlide JS
+vi)  APIs: Google Log in, Google Map, Slack, ...
 
 Project Method (Agile / Scrum):
 Iteration 1 Stories:
