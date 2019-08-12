@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-'use strict';
- 
-const application = require('./route').app;
+"use strict";
+
+const application = require("./route").app;
 
 module.exports = application;

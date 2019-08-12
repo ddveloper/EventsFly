@@ -2,7 +2,7 @@
  * Datastore module, a lite database
  */
 
-const {Datastore} = require('@google-cloud/datastore');
+const { Datastore } = require("@google-cloud/datastore");
 
 // Instantiate a datastore client
 const datastore = new Datastore();
@@ -14,8 +14,8 @@ const datastore = new Datastore();
  */
 const insertVisit = visit => {
   return datastore.save({
-    key: datastore.key('visit'),
-    data: visit,
+    key: datastore.key("visit"),
+    data: visit
   });
 };
 
@@ -24,14 +24,14 @@ const insertVisit = visit => {
  */
 const getVisits = () => {
   const query = datastore
-    .createQuery('visit')
-    .order('timestamp', {descending: true})
+    .createQuery("visit")
+    .order("timestamp", { descending: true })
     .limit(10);
 
   return datastore.runQuery(query);
 };
 
 module.exports = {
-    insertVisit,
-    getVisits
+  insertVisit,
+  getVisits
 };

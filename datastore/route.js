@@ -2,31 +2,44 @@
  * Route module, acting as controller
  */
 
-'use strict';
+"use strict";
 
-const express = require('express');
-const crypto = require('crypto');
-const database = require('./datastore');
+const express = require("express");
+const crypto = require("crypto");
+const database = require("./datastore");
 
 const app = express();
-app.enable('trust proxy');
+app.enable("trust proxy");
 
-// By default, the client will authenticate using the service account file
-// specified by the GOOGLE_APPLICATION_CREDENTIALS environment variable and use
-// the project specified by the GOOGLE_CLOUD_PROJECT environment variable. See
-// https://github.com/GoogleCloudPlatform/google-cloud-node/blob/master/docs/authentication.md
-// These environment variables are set automatically on Google App Engine
+app.get("/", (req, res) => {
+  res
+    .status(302)
+    .set({ Location: "/index" })
+    .end();
+});
 
-app.get('/', async (req, res, next) => {
+app.get("/index", (reg, res) => {
+  res.sendFile(__dirname + "/view/index.html");
+});
+
+app.get("/submit", (reg, res) => {
+  res.sendFile(__dirname + "/view/submit.html");
+});
+
+app.get("/myico", (reg, res) => {
+  res.sendFile(__dirname + "/view/icon.png");
+});
+
+app.get("/visit", async (req, res, next) => {
   // Create a visit record to be stored in the database
   const visit = {
     timestamp: new Date(),
     // Store a hash of the visitor's ip address
     userIp: crypto
-      .createHash('sha256')
+      .createHash("sha256")
       .update(req.ip)
-      .digest('hex')
-      .substr(0, 7),
+      .digest("hex")
+      .substr(0, 7)
   };
 
   try {
@@ -37,8 +50,8 @@ app.get('/', async (req, res, next) => {
     );
     res
       .status(200)
-      .set('Content-Type', 'text/plain')
-      .send(`Last 10 visits:\n${visits.join('\n')}`)
+      .set("Content-Type", "text/plain")
+      .send(`Last 10 visits:\n${visits.join("\n")}`)
       .end();
   } catch (error) {
     next(error);
@@ -48,7 +61,7 @@ app.get('/', async (req, res, next) => {
 const PORT = process.env.PORT || 8080;
 app.listen(process.env.PORT || 8080, () => {
   console.log(`App listening on port ${PORT}`);
-  console.log('Press Ctrl+C to quit.');
+  console.log("Press Ctrl+C to quit.");
 });
 
 module.exports = app;
