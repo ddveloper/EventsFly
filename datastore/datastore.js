@@ -1,5 +1,5 @@
 /**
- * Datastore module, a lite database
+ * Datastore module, a lite Google Cloud database
  */
 
 const { Datastore } = require("@google-cloud/datastore");

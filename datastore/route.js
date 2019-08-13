@@ -6,8 +6,10 @@
 
 const express = require("express");
 const crypto = require("crypto");
-const database = require("./datastore");
 const formidable = require("formidable");
+
+const database = require("./datastore");
+const storage = require("./storage");
 
 const app = express();
 app.enable("trust proxy");
@@ -31,13 +33,15 @@ app.post("/upload", (req, res) => {
   new formidable.IncomingForm()
     .parse(req)
     .on("fileBegin", (name, file) => {
-      file.path = __dirname + "/uploads/" + file.name;
+      //file.path = __dirname + "/uploads/" + file.name;
     })
     .on("field", (name, field) => {
       console.log("Field", name, field);
     })
     .on("file", async (name, file) => {
       console.log("file uploaded: ", file.name);
+      storage.insertFile(file.path);
+      //fs.unlinkSync(file.path);
     })
     .on("aborted", () => {
       console.error("Request aborted by the user");
