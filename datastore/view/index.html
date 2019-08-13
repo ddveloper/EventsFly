@@ -18,6 +18,13 @@
         main {
             padding-top: 30px;
         }
+
+        /* http://www.corelangs.com/css/box/hover.html */
+        .show-imgs:hover {
+            -moz-box-shadow: 0 0 15px #aaa;
+            -webkit-box-shadow: 0 0 15px #aaa;
+            box-shadow: 0 0 15px #aaa;
+        }
     </style>
 </head>
 
@@ -45,7 +52,18 @@
 
     <!-- Begin page content -->
     <main role="main" class="container">
-        <h1 class="mt-5">Placeholder for images</h1>
+        <hr class="mt-2 mb-5">
+        <div class="row text-center text-lg-left">
+            {{ #img_links }}
+            <div class="image-show col-lg-3 col-md-4 col-6" alt="Responsive image" data-toggle="modal"
+                data-target="#myModal">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="show-imgs img-fluid img-thumbnail" alt="" src={{ link }}>
+                </a>
+            </div>
+            {{ /img_links }}
+        </div>
+        </hr>
     </main>
 </body>
 

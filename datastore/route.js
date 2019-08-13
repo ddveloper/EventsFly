@@ -7,6 +7,8 @@
 const express = require("express");
 const crypto = require("crypto");
 const formidable = require("formidable");
+const mustache = require("mustache");
+const fs = require("fs");
 
 const database = require("./datastore");
 const storage = require("./storage");
@@ -22,7 +24,18 @@ app.get("/", (req, res) => {
 });
 
 app.get("/index", (req, res) => {
-  res.sendFile(__dirname + "/view/index.html");
+  fs.readFile(__dirname + "/view/index.html", async (err, data) => {
+    res.writeHead(200, {
+      "Content-Type": "text/html"
+    });
+    var img_links = await storage.getFileLinks();
+    res.write(
+      mustache.render(data.toString(), {
+        img_links: img_links
+      })
+    );
+    res.end();
+  });
 });
 
 app.get("/submit", (req, res) => {

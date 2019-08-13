@@ -1,1 +1,5 @@
 node_modules/
+datastore/view/myProj.code-workspace
+datastore/.vscode/settings.json
+datastore/.vscode/launch.json
+datastore/package-lock.json
