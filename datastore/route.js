@@ -7,6 +7,7 @@
 const express = require("express");
 const crypto = require("crypto");
 const database = require("./datastore");
+const formidable = require("formidable");
 
 const app = express();
 app.enable("trust proxy");
@@ -18,15 +19,38 @@ app.get("/", (req, res) => {
     .end();
 });
 
-app.get("/index", (reg, res) => {
+app.get("/index", (req, res) => {
   res.sendFile(__dirname + "/view/index.html");
 });
 
-app.get("/submit", (reg, res) => {
+app.get("/submit", (req, res) => {
   res.sendFile(__dirname + "/view/submit.html");
 });
 
-app.get("/myico", (reg, res) => {
+app.post("/upload", (req, res) => {
+  new formidable.IncomingForm()
+    .parse(req)
+    .on("fileBegin", (name, file) => {
+      file.path = __dirname + "/uploads/" + file.name;
+    })
+    .on("field", (name, field) => {
+      console.log("Field", name, field);
+    })
+    .on("file", async (name, file) => {
+      console.log("file uploaded: ", file.name);
+    })
+    .on("aborted", () => {
+      console.error("Request aborted by the user");
+    })
+    .on("error", err => {
+      console.error("Error", err);
+    })
+    .on("end", () => {
+      res.end();
+    });
+});
+
+app.get("/myico", (req, res) => {
   res.sendFile(__dirname + "/view/icon.png");
 });
 
