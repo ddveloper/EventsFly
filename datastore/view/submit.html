@@ -14,6 +14,10 @@
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <!--external plugin for dropbox-->
+    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+
     <style type="text/css">
         main {
             padding-top: 30px;
@@ -40,8 +44,21 @@
 
     <!-- Begin page content -->
     <main role="main" class="container">
-        <h1 class="mt-5">Placeholder for upload component</h1>
+        <br />
+        <h1 class="mt-5">Upload Your Poster here</h1>
+        <br />
+        <form action="/upload" method="post" enctype="multipart/form-data" class="dropzone" id="my-awesome-dropzone">
+        </form>
     </main>
+
+    <script>
+        // "myAwesomeDropzone" is the camelized version of the HTML element's ID
+        Dropzone.options.myAwesomeDropzone = {
+            paramName: "file", // The name that will be used to transfer the file
+            maxFilesize: 3, // MB
+            accept: (file, done) => { done(); }
+        };
+    </script>
 </body>
 
 </html>
