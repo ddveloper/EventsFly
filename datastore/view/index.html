@@ -82,7 +82,8 @@
                 <div class="image-show col-lg-3 col-md-4 col-6" alt="Responsive image" data-toggle="modal"
                     data-target="#myModal">
                     <a href="#" class="d-block mb-4 h-100">
-                        <img class="show-imgs img-fluid img-thumbnail" alt="" src={{ link }}>
+                        <img class="show-imgs img-fluid img-thumbnail img-click" id="img{{ index }}" alt=""
+                            src={{ link }}>
                     </a>
                 </div>
                 {{ /img_links }}
@@ -98,6 +99,22 @@
 
         </div>
     </main>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".img-click").click(() => {
+                //BUGBUG: assign only current "src", not first found
+                var pathStr = $(".img-click").attr("src");
+                pathStr = String(pathStr).substring(String(pathStr).indexOf("upload_"));
+                var parameters = { 
+                    path: pathStr
+                };
+                $.get('/posterinfor', parameters, (data) => {
+                    console.log(data);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

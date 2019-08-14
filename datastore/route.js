@@ -23,6 +23,23 @@ app.get("/", (req, res) => {
     .end();
 });
 
+app.get("/posterinfor", async (req, res) => {
+  console.log("query:", req.query.path);
+  //BUGBUG: right now query 10 max back, need to change to "filter" one back
+  const [entities] = await database.getPoster(req.query.path);
+  //find the one
+  var objResult = {};
+  for (var idx = 0; idx < entities.length; idx++) {
+    if (entities[idx]["filePath"] === req.query.path) {
+      objResult = entities[idx];
+      console.log("found!");
+      break;
+    }
+  }
+  //console.log(objResult);
+  res.send(objResult);
+});
+
 app.get("/index", (req, res) => {
   fs.readFile(__dirname + "/view/index.html", async (err, data) => {
     res.writeHead(200, {
