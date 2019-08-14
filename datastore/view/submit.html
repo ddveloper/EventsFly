@@ -22,6 +22,24 @@
         main {
             padding-top: 30px;
         }
+
+        .col-form-label {
+            margin-top: 12px;
+        }
+
+        .form-control {
+            margin-top: 12px;
+        }
+
+        /* .dz-default{ TODO: add dot-line out of drop box
+            border: solid 1px black;
+            margin: 0px;
+        } */
+
+        /* #navigation, TODO: change banner image
+        .navbar .navbar-default {
+            background-image: url("/view/icon.png");
+        } */
     </style>
 </head>
 
@@ -37,18 +55,45 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/index">Home</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
             </ul>
         </div>
     </nav>
 
-
     <!-- Begin page content -->
     <main role="main" class="container">
-        <br />
-        <h1 class="mt-5">Upload Your Poster here</h1>
+        <h1 class="mt-5">Events Details:</h1>
+        <form id="infor-form" action="/submit" method="post"
+            style="border: 2px solid #bbb; padding-left:20px; padding-top: 15px">
+            <div class="form-group row mb-3">
+                <!-- 1st row -->
+                <label class="col-sm-2 col-form-label">Email Address:</label>
+                <div class="col-sm-3"><input type="email" class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter email" name="email"></div>
+                <label class="col-sm-2 col-form-label">Departments:</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="sel1" name="department">
+                        <!-- TODO: add placeholder "departments"-->
+                        <option>Academic & Research Computing</option>
+                        <option>Business Accelerator</option>
+                    </select>
+                </div>
+                <!-- 2nd row -->
+                <label class="col-sm-2 col-form-label">Event Date:</label>
+                <div class="col-sm-3"><input class="form-control" type="date" name="date"></div>
+                <label class="col-sm-2 col-form-label">Event Time:</label>
+                <div class="col-sm-4"><input class="form-control" type="time" name="time"></div>
+            </div>
+        </form>
         <br />
         <form action="/upload" method="post" enctype="multipart/form-data" class="dropzone" id="my-awesome-dropzone">
         </form>
+        <br />
+        <div class="form-group row mb-3">
+            <div class="col-sm-8"><button type="submit" form="infor-form" class="btn btn-primary">submit</button></div>
+        </div>
     </main>
 
     <script>

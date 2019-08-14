@@ -73,6 +73,17 @@ app.post("/upload", (req, res) => {
     });
 });
 
+app.post("/submit", (req, res) => {
+  new formidable.IncomingForm()
+    .parse(req)
+    .on("field", (name, field) => {
+      console.log("Field", name, field);
+    })
+    .on("end", () => {
+      res.status(204).send();
+    });
+});
+
 app.get("/myico", (req, res) => {
   res.sendFile(__dirname + "/view/icon.png");
 });
