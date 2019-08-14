@@ -8,30 +8,48 @@ const { Datastore } = require("@google-cloud/datastore");
 const datastore = new Datastore();
 
 /**
- * Insert a visit record into the database.
+ * Insert a poster record into the database.
  *
- * @param {object} visit The visit record to insert.
+ * @param {object} poster The poster record to insert.
  */
-const insertVisit = visit => {
+const insertPoster = poster => {
   return datastore.save({
-    key: datastore.key("visit"),
-    data: visit
+    key: datastore.key("poster"),
+    data: poster
   });
 };
 
 /**
- * Retrieve the latest 10 visit records from the database.
+ * Retrieve the latest 10 poster records from the database.
  */
-const getVisits = () => {
+const getPoster = () => {
   const query = datastore
-    .createQuery("visit")
+    .createQuery("poster")
     .order("timestamp", { descending: true })
     .limit(10);
 
   return datastore.runQuery(query);
 };
 
+/**
+ * Compose a new poster record.
+ */
+const newPoster = (eml, dt, tm, dpt, fn, fp) => {
+  const poster = {
+    timestamp: new Date(),
+    email: eml,
+    date: dt,
+    time: tm,
+    department: dpt,
+    fileName: fn,
+    filePath: fp
+  };
+
+  return poster;
+};
+
 module.exports = {
-  insertVisit,
-  getVisits
+  insertPoster,
+  getPoster,
+  newPoster
 };

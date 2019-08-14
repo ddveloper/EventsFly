@@ -44,7 +44,9 @@ app.get("/index", (req, res) => {
   });
 });
 
+let fileList = [];
 app.get("/submit", (req, res) => {
+  fileList = [];
   res.sendFile(__dirname + "/view/submit.html");
 });
 
@@ -59,6 +61,10 @@ app.post("/upload", (req, res) => {
     })
     .on("file", async (name, file) => {
       console.log("file uploaded: ", file.name);
+      const hashName = String(file.path).substring(
+        String(file.path).indexOf("upload_")
+      );
+      fileList.push({ path: hashName, name: file.name });
       storage.insertFile(file.path);
       //fs.unlinkSync(file.path);
     })
@@ -75,9 +81,24 @@ app.post("/upload", (req, res) => {
 
 app.post("/submit", (req, res) => {
   new formidable.IncomingForm()
-    .parse(req)
-    .on("field", (name, field) => {
-      console.log("Field", name, field);
+    .parse(req, (err, fields, files) => {
+      if (err) {
+        console.error("Error", err);
+        throw err;
+      }
+      //console.log("Fields", fields);
+      //console.log("FileList:", fileList);
+      for (var i = 0, len = fileList.length; i < len; i++) {
+        const poster = database.newPoster(
+          fields.email,
+          fields.date,
+          fields.time,
+          fields.department,
+          fileList[i]["name"],
+          fileList[i]["path"]
+        );
+        database.insertPoster(poster);
+      }
     })
     .on("end", () => {
       res.status(204).send();
