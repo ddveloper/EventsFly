@@ -29,9 +29,15 @@ app.get("/index", (req, res) => {
       "Content-Type": "text/html"
     });
     var img_links = await storage.getFileLinks();
+    var ex_img_links = [];
+    for (var idx = 0; idx < img_links.length; idx++)
+      ex_img_links.push({
+        index: idx,
+        link: img_links[idx]["link"]
+      });
     res.write(
       mustache.render(data.toString(), {
-        img_links: img_links
+        img_links: ex_img_links
       })
     );
     res.end();
