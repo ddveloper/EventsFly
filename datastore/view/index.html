@@ -16,7 +16,7 @@
 
     <style type="text/css">
         main {
-            padding-top: 30px;
+            display: table-row;
         }
 
         /* http://www.corelangs.com/css/box/hover.html */
@@ -24,6 +24,19 @@
             -moz-box-shadow: 0 0 15px #aaa;
             -webkit-box-shadow: 0 0 15px #aaa;
             box-shadow: 0 0 15px #aaa;
+        }
+
+        /* https://stackoverflow.com/questions/6334495/center-a-div-in-the-middle-of-the-screen-even-when-the-page-is-scrolled-up-or */
+        .PopupPanel {
+            /* border: solid 1px black; */
+            position: fixed;
+            right: 10px;
+            background-color: white;
+            z-index: 100;
+            height: 480px;
+            margin-top: 25px;
+            width: 310px;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -49,21 +62,33 @@
         </div>
     </nav>
 
+    <!-- compensate the nav bar height -->
+    <hr class="mt-2 mb-5" />
 
     <!-- Begin page content -->
-    <main role="main" class="container">
-        <hr class="mt-2 mb-5">
-        <div class="row text-center text-lg-left">
-            {{ #img_links }}
-            <div class="image-show col-lg-3 col-md-4 col-6" alt="Responsive image" data-toggle="modal"
-                data-target="#myModal">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="show-imgs img-fluid img-thumbnail" alt="" src={{ link }}>
-                </a>
+    <main class="container">
+        <!-- Left Panel -->
+        <div style="display: table-cell; padding: 20px">
+            <div class=" row text-center text-lg-left">
+                {{ #img_links }}
+                <div class="image-show col-lg-3 col-md-4 col-6" alt="Responsive image" data-toggle="modal"
+                    data-target="#myModal">
+                    <a href="#" class="d-block mb-4 h-100">
+                        <img class="show-imgs img-fluid img-thumbnail" alt="" src={{ link }}>
+                    </a>
+                </div>
+                {{ /img_links }}
             </div>
-            {{ /img_links }}
         </div>
-        </hr>
+
+        <!-- Middle Bar -->
+        <div style="width: 3px; display: table-cell; border:1px solid #ccc"></div>
+
+        <!-- Right Panel -->
+        <div style="width: 350px; display: table-cell; padding: 10px; vertical-align: middle"> </div>
+        <div class="PopupPanel">
+
+        </div>
     </main>
 </body>
 
