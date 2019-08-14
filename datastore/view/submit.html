@@ -69,9 +69,21 @@
             style="border: 2px solid #bbb; padding-left:20px; padding-top: 15px">
             <div class="form-group row mb-3">
                 <!-- 1st row -->
-                <label class="col-sm-2 col-form-label">Email Address:</label>
+                <!-- <label class="col-sm-2 col-form-label">Email Address:</label>
                 <div class="col-sm-3"><input type="email" class="form-control" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Enter email" name="email"></div>
+                 -->
+                <label class="col-sm-2 col-form-label">Location:</label>
+                <div class="col-sm-3">
+                    <select class="form-control" id="sel2" name="department">
+                        <!-- TODO: add placeholder "Buildings"-->
+                        <option>KMC Building</option>
+                        <option>Cramer Hall</option>
+                        <option>Engineering Building</option>
+                        <option>FAB</option>
+                    </select>
+                </div>
+
                 <label class="col-sm-2 col-form-label">Departments:</label>
                 <div class="col-sm-4">
                     <select class="form-control" id="sel1" name="department">
@@ -80,12 +92,22 @@
                         <option>Business Accelerator</option>
                     </select>
                 </div>
+            </div>
+
+            <div class="form-group row mb-3">
                 <!-- 2nd row -->
-                <label class="col-sm-2 col-form-label">Event Date:</label>
+                <label class="col-sm-2 col-form-label">Date:</label>
                 <div class="col-sm-3"><input class="form-control" type="date" name="date"></div>
-                <label class="col-sm-2 col-form-label">Event Time:</label>
+                <label class="col-sm-2 col-form-label">Time:</label>
                 <div class="col-sm-4"><input class="form-control" type="time" name="time"></div>
             </div>
+            
+            <div class="form-group row mb-3">
+                <!-- 3rd row -->
+                <label class="col-sm-2 col-form-label">Description:</label>   
+                <div class="col-sm-8"><textarea class="form-control"name="description" id="ta1"></textarea></div>
+            </div>
+            
         </form>
         <br />
         <form action="/upload" method="post" enctype="multipart/form-data" class="dropzone" id="my-awesome-dropzone">

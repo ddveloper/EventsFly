@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
     <meta name="description" content="Show Posters on campus of Portland State University">
     <meta name="author" content="Dawei Zhang">
+    <meta name="google-signin-client_id" content="my_cid.apps.googleusercontent.com">
 
     <link rel="icon" href="/myico">
     <link rel="stylesheet" type="text/css"
@@ -39,6 +40,13 @@
             margin-right: 10px;
         }
 
+        #map {
+            height: 40%;
+            position: absolute; 
+            bottom: 0; 
+            width: 100%; 
+        }
+
         /* #navigation, TODO: change banner image
         .navbar .navbar-default {
             background-image: url("/view/icon.png");
@@ -65,7 +73,7 @@
             </ul>
             <form class="form-inline mt-2 mt-md-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>
+                <button class="g-signin2 btn btn-outline-success my-2 my-sm-0" data-onsuccess="onSignIn" type="submit">Log In</button>
             </form>
         </div>
     </nav>
@@ -96,7 +104,35 @@
         <!-- Right Panel -->
         <div style="width: 350px; display: table-cell; padding: 10px; vertical-align: middle"> </div>
         <div class="PopupPanel">
-
+            <div>
+                <table>
+                    <td>
+                        <tr style="height: 200px; overflow-y: scroll;">
+                            <h5>description:</h5>
+                            <div id="poster_description">Idea Exchanges provide education, networking, and deal making on a smaller scale than Regional Deal Making events. Meet with local colleagues in the area.</div>
+                        </tr>
+                    </td>
+                    <td>
+                        <tr style="height: 200px; overflow-y: scroll;">
+                            <h5>date&time:</h5>
+                            <div id="poster_datetime">Thursday, August 15, 2019 - 8:00am</div>
+                        </tr>
+                    </td>
+                    <td>
+                        <tr style="height: 200px; overflow-y: scroll;">
+                            <h5>location:</h5>
+                            <div id="poster_location">Hyatt Regency Bellevue <br/>Bellevue, WA</div>
+                        </tr>
+                    </td>
+                </table>
+                <!-- <h5>description:</h5>
+                <div id="poster_description">test </div>
+                <h5>date&time:</h5>
+                <div id="poster_datetime"> dfa</div>
+                <h5>location:</h5>
+                <div id="poster_location">asss</div> -->
+            </div>
+            <div id="map"></div>
         </div>
     </main>
 
@@ -112,9 +148,32 @@
                 $.get('/posterinfor', parameters, (data) => {
                     console.log(data);
                 });
+                setLocation(45.511633, -122.683223);
             });
         });
+        var map, infoWindow;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 8
+            });
+            infoWindow = new google.maps.InfoWindow;
+        };
+        function setLocation(latitude, longitude) {
+            var pos = {
+              lat: latitude,
+              lng: longitude
+            };
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Hi');
+            infoWindow.open(map);
+            map.setCenter(pos);
+            map.setZoom(16);
+        };
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=my_key&callback=initMap"
+    async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
 </body>
 
 </html>
