@@ -82,8 +82,7 @@
             </ul>
             <form class="form-inline mt-2 mt-md-0">
                 <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="g-signin2 btn btn-outline-success my-2
-                        my-sm-0" data-onsuccess="onSignIn" type="submit">Log In</button>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </form>
         </div>
     </nav>
@@ -156,11 +155,27 @@
         // Update Infor Panel
         function updatePanel(data) {
             $("#poster_desp").text(data.description);
-            $("#poster_t1").text("From: " + String(data.timeStart).replace('T',','));
-            $("#poster_t2").text("To: " + String(data.timeEnd).replace('T',','));
+            $("#poster_t1").text("From: " + String(data.timeStart).replace('T', ','));
+            $("#poster_t2").text("To: " + String(data.timeEnd).replace('T', ','));
             $("#poster_bld").text(data.building);
             $("#poster_addr").text(data.address);
             setLocation(Number(data.lat), Number(data.lng), data.bd_abbr);
+        }
+
+        // Google Sign in Functions
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function() {
+                console.log('User signed out.');
+            });
         }
 
         // Google Map Functions
