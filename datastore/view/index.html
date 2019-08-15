@@ -160,7 +160,7 @@
             $("#poster_t2").text("To: " + data.timeEnd);
             $("#poster_bld").text(data.building);
             $("#poster_addr").text(data.address);
-            setLocation(Number(data.lat), Number(data.lng));
+            setLocation(Number(data.lat), Number(data.lng), data.bd_abbr);
         }
 
         // Google Map Functions
@@ -177,13 +177,13 @@
             infoWindow = new google.maps.InfoWindow;
         };
 
-        function setLocation(latitude, longitude) {
+        function setLocation(latitude, longitude, msg) {
             var pos = {
                 lat: latitude,
                 lng: longitude
             };
             infoWindow.setPosition(pos);
-            infoWindow.setContent('Hi');
+            infoWindow.setContent(msg);
             infoWindow.open(map);
             map.setCenter(pos);
             map.setZoom(16);

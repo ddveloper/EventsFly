@@ -39,8 +39,10 @@ app.get("/posterinfor", async (req, res) => {
     objResult = entities[0];
     console.log("found!");
   }
+  // add new entries below
   const bl = build_location[Number(objResult.location)];
   objResult.building = bl.building_name;
+  objResult.bd_abbr = bl.abbr;
   objResult.address = bl.addr;
   objResult.lat = bl.lat;
   objResult.lng = bl.lng;
