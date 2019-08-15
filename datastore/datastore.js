@@ -34,13 +34,14 @@ const getPoster = path => {
 /**
  * Compose a new poster record.
  */
-const newPoster = (eml, dt, tm, dpt, fn, fp) => {
+const newPoster = (lc, t1, t2, dpt, desp, fn, fp) => {
   const poster = {
     timestamp: new Date(),
-    email: eml,
-    date: dt,
-    time: tm,
+    location: lc,
+    timeStart: t1,
+    timeEnd: t2,
     department: dpt,
+    description: desp,
     fileName: fn,
     filePath: fp
   };

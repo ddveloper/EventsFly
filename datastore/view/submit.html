@@ -67,11 +67,11 @@
                 <!-- 1st row -->
                 <label class="col-sm-2 col-form-label">Location:</label>
                 <div class="col-sm-3">
-                    <select class="form-control" id="sel1" name="department">
+                    <select class="form-control" id="sel1" name="location">
                         </select>
                 </div>
 
-                <label class="col-sm-2 col-form-label">Departments:</label>
+                <label class="col-sm-2 col-form-label">Department:</label>
                 <div class="col-sm-4">
                     <select class="form-control" id="sel2" name="department">
                         </select>
@@ -81,9 +81,9 @@
             <div class="form-group row mb-3">
                 <!-- 2nd row -->
                 <label class="col-sm-2 col-form-label">Start Time:</label>
-                <div class="col-sm-3"><input class="form-control" type="datetime-local" id="time1" name="time1" value=""></div>
+                <div class="col-sm-3"><input class="form-control" type="datetime-local" id="time1" name="timeStart" value=""></div>
                 <label class="col-sm-2 col-form-label">End Time:</label>
-                <div class="col-sm-4"><input class="form-control" type="datetime-local" id="time2" name="time2" value=""></div>
+                <div class="col-sm-4"><input class="form-control" type="datetime-local" id="time2" name="timeEnd" value=""></div>
             </div>
 
             <div class="form-group row mb-3">
@@ -114,6 +114,7 @@
         };
 
         $(document).ready(function() {
+            // initial form items
             var dropItem = {
                 id: "sel1",
                 arg: "buildings"
@@ -123,11 +124,7 @@
                 id: "sel2",
                 arg: "departments"
             };
-            updateFormOptions(dropItem); // update department names
-            var today = new Date();
-            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            var dateTime = date + 'T' + time;
+            updateFormOptions(dropItem); // update department names            
             var tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             $("#time1").val(tomorrow.toJSON().slice(0, 11) + "09:00:00");

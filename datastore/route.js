@@ -26,22 +26,16 @@ app.get("/", (req, res) => {
 app.get("/posterinfor", async (req, res) => {
   console.log("query:", req.query.path);
   const [entities] = await database.getPoster(req.query.path);
-  //find the one
   var objResult = {};
-  for (var idx = 0; idx < entities.length; idx++) {
-    if (entities[idx]["filePath"] === req.query.path) {
-      objResult = entities[idx];
-      console.log("found!");
-      break;
-    }
+  if (entities.length === 1 && entities[idx]["filePath"] === req.query.path) {
+    objResult = entities[idx];
+    console.log("found!");
   }
-  //console.log(objResult);
   res.send(objResult);
 });
 
 app.get("/vendorinfor", async (req, res) => {
-  console.log("query vendor:", req.query.user);
-  console.log("query infor:", req.query.infor);
+  console.log("query by [", req.query.user, "] for ", req.query.infor);
 
   var objReturn = {};
   if (req.query.infor === "buildings") {
@@ -91,7 +85,6 @@ app.post("/upload", (req, res) => {
   new formidable.IncomingForm()
     .parse(req)
     .on("fileBegin", (name, file) => {
-      //file.path = __dirname + "/uploads/" + file.name;
     })
     .on("field", (name, field) => {
       console.log("Field", name, field);
@@ -127,10 +120,11 @@ app.post("/submit", (req, res) => {
       //console.log("FileList:", fileList);
       for (var i = 0, len = fileList.length; i < len; i++) {
         const poster = database.newPoster(
-          fields.email,
-          fields.date,
-          fields.time,
+          fields.location,
+          fields.timeStart,
+          fields.timeEnd,
           fields.department,
+          fields.description,
           fileList[i]["name"],
           fileList[i]["path"]
         );
