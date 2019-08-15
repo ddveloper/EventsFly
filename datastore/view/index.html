@@ -116,7 +116,7 @@
             <div>
                 <form>
                     <label class="col-sm-8 col-form-label">Description:</label>
-                    <div class="col-sm-14"><textarea readonly class="form-control" style="height: 100px; color: black; background-color: white; " name="description" id="ta1">Bring your bike to this Friday workshop and learn how to change your flat tire. This is a great clinic for a refresher or for the first-time cyclist.
+                    <div class="col-sm-14"><textarea readonly class="form-control" style="height: 100px; color: black; background-color: white; " name="description" id="poster_desp">Bring your bike to this Friday workshop and learn how to change your flat tire. This is a great clinic for a refresher or for the first-time cyclist.
                     </textarea></div>
 
                     <label class="col-sm-8 col-form-label">Start - End:</label>
@@ -156,8 +156,8 @@
         // Update Infor Panel
         function updatePanel(data) {
             $("#poster_desp").text(data.description);
-            $("#poster_t1").text("From: " + data.timeStart);
-            $("#poster_t2").text("To: " + data.timeEnd);
+            $("#poster_t1").text("From: " + String(data.timeStart).replace('T',','));
+            $("#poster_t2").text("To: " + String(data.timeEnd).replace('T',','));
             $("#poster_bld").text(data.building);
             $("#poster_addr").text(data.address);
             setLocation(Number(data.lat), Number(data.lng), data.bd_abbr);
