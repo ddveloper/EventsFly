@@ -25,7 +25,6 @@ app.get("/", (req, res) => {
 
 app.get("/posterinfor", async (req, res) => {
   console.log("query:", req.query.path);
-  //BUGBUG: right now query 10 max back, need to change to "filter" one back
   const [entities] = await database.getPoster(req.query.path);
   //find the one
   var objResult = {};

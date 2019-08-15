@@ -22,11 +22,11 @@ const insertPoster = poster => {
 /**
  * Retrieve the latest 10 poster records from the database.
  */
-const getPoster = () => {
+const getPoster = path => {
   const query = datastore
     .createQuery("poster")
-    .order("timestamp", { descending: true })
-    .limit(10);
+    .filter("filePath", "=", path)
+    .limit(1);
 
   return datastore.runQuery(query);
 };
