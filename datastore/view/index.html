@@ -37,6 +37,13 @@
             width: 310px;
             margin-right: 10px;
         }
+        
+        #map {
+            height: 40%;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
         /* #navigation, TODO: change banner image
         .navbar .navbar-default {
             background-image: url("/view/icon.png");
@@ -119,6 +126,7 @@
                     </td>
                 </table>
             </div>
+            <div id="map"></div>
         </div>
     </main>
 
@@ -134,9 +142,37 @@
                 $.get('/posterinfor', parameters, (data) => {
                     console.log(data);
                 });
+                setLocation(45.511633, -122.683223);
             });
         });
+
+        // Google Map Functions
+        var map, infoWindow;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: 45.511291,
+                    lng: -122.683128
+                },
+                zoom: 16
+            });
+            infoWindow = new google.maps.InfoWindow;
+        };
+
+        function setLocation(latitude, longitude) {
+            var pos = {
+                lat: latitude,
+                lng: longitude
+            };
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Hi');
+            infoWindow.open(map);
+            map.setCenter(pos);
+            map.setZoom(16);
+        };
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=my_key&callback=initMap" async defer></script>
 </body>
 
 </html>
