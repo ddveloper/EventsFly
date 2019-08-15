@@ -23,14 +23,27 @@ app.get("/", (req, res) => {
     .end();
 });
 
+const build_location = JSON.parse(
+  fs.readFileSync(__dirname + "/vendor/Building_Locations.json")
+)["Building_Locations"];
+
+const depart_list = JSON.parse(
+  fs.readFileSync(__dirname + "/vendor/departments.json")
+)["Departments"];
+
 app.get("/posterinfor", async (req, res) => {
   console.log("query:", req.query.path);
   const [entities] = await database.getPoster(req.query.path);
   var objResult = {};
-  if (entities.length === 1 && entities[idx]["filePath"] === req.query.path) {
-    objResult = entities[idx];
+  if (entities.length === 1 && entities[0]["filePath"] === req.query.path) {
+    objResult = entities[0];
     console.log("found!");
   }
+  const bl = build_location[Number(objResult.location)];
+  objResult.building = bl.building_name;
+  objResult.address = bl.addr;
+  objResult.lat = bl.lat;
+  objResult.lng = bl.lng;
   res.send(objResult);
 });
 
@@ -39,17 +52,11 @@ app.get("/vendorinfor", async (req, res) => {
 
   var objReturn = {};
   if (req.query.infor === "buildings") {
-    var objBLinfor = JSON.parse(
-      fs.readFileSync(__dirname + "/vendor/Building_Locations.json")
-    );
-    objReturn = objBLinfor["Building_Locations"].map(blItem => {
+    objReturn = build_location.map(blItem => {
       return blItem["abbr"] + " - " + blItem["building_name"];
     });
   } else if (req.query.infor === "departments") {
-    var objBLinfor = JSON.parse(
-      fs.readFileSync(__dirname + "/vendor/departments.json")
-    );
-    objReturn = objBLinfor["Departments"];
+    objReturn = depart_list;
   }
   res.send(objReturn);
 });

@@ -142,10 +142,20 @@
                 };
                 $.get('/posterinfor', parameters, (data) => {
                     console.log(data);
+                    updatePanel(data);
                 });
-                setLocation(45.511633, -122.683223);
             });
         });
+
+        // Update Infor Panel
+        function updatePanel(data) {
+            $("#poster_desp").text(data.description);
+            $("#poster_t1").text("From: " + data.timeStart);
+            $("#poster_t2").text("To: " + data.timeEnd);
+            $("#poster_bld").text(data.building);
+            $("#poster_addr").text(data.address);
+            setLocation(Number(data.lat), Number(data.lng));
+        }
 
         // Google Map Functions
         var map, infoWindow;

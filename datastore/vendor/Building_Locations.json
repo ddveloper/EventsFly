@@ -3,32 +3,37 @@
     {
       "building_name": "Karl Miller Center",
       "abbr": "KMC",
-      "addr": "615 SW Harrison Street, Portland, Oregon 97201",
-      "latlng": "45.511558, -122.683230"
+      "addr": "615 SW Harrison Street, Portland",
+      "lat": "45.511558", 
+      "lng": "-122.683230"
     },
     {
       "building_name": "Engineering Building",
       "abbr": "EB",
-      "addr": "1930 SW 4th Avenue, Portland, Oregon 97201",
-      "latlng": "45.509065, -122.680929"
+      "addr": "1930 SW 4th Avenue, Portland",
+      "latlng": "45.509065", 
+      "lng": "-122.680929"
     },
     {
       "building_name": "Millar Library",
       "abbr": "ML",
-      "addr": "1875 SW Park Avenue Portland, Oregon 97201",
-      "latlng": "45.511599, -122.686048"
+      "addr": "1875 SW Park Avenue Portland",
+      "latlng": "45.511599", 
+      "lng": "-122.686048"
     },
     {
       "building_name": "Fourth Avenue Building",
       "abbr": "FAB",
-      "addr": "615 SW Harrison Street, Portland, Oregon 97201",
-      "latlng": "45.509566, -122.680711"
+      "addr": "615 SW Harrison Street, Portland",
+      "latlng": "45.509566", 
+      "lng": "-122.680711"
     },
     {
       "building_name": "Smith Memorial Student Union",
       "abbr": "SMSU",
-      "addr": "1825 SW Broadway, Portland, Oregon 97201",
-      "latlng": "45.511809, -122.684231"
+      "addr": "1825 SW Broadway, Portland",
+      "latlng": "45.511809", 
+      "lng": "-122.684231"
     }
   ]
 }
