@@ -19,6 +19,16 @@
         main {
             display: table-row;
         }
+        
+        .col-form-label {
+            padding: 2px;
+            font-size: large;
+            font-weight: bold;
+        }
+        
+        .form-control {
+            padding: 0px;
+        }
         /* http://www.corelangs.com/css/box/hover.html */
         
         .show-imgs:hover {
@@ -44,7 +54,8 @@
             height: 40%;
             position: absolute;
             bottom: 0;
-            width: 100%;
+            width: 99%;
+            align: center;
         }
         /* #navigation, TODO: change banner image
         .navbar .navbar-default {
@@ -103,30 +114,25 @@
                 vertical-align: middle"> </div>
         <div class="PopupPanel">
             <div>
-                <!--TODO: use bootstrap layout to render this table -->
-                <table>
-                    <td>
-                        <tr style="height: 200px; overflow-y: scroll;">
-                            <h5>Description:</h5>
-                            <div id="poster_description">Idea Exchanges provide education, networking, and deal making on a smaller scale than Regional Deal Making events. Meet with local colleagues in the area.
+                <form>
+                    <label class="col-sm-8 col-form-label">Description:</label>
+                    <div class="col-sm-14"><textarea readonly class="form-control" style="height: 100px; color: black; background-color: white; " name="description" id="ta1">Bring your bike to this Friday workshop and learn how to change your flat tire. This is a great clinic for a refresher or for the first-time cyclist.
+                    </textarea></div>
+
+                    <label class="col-sm-8 col-form-label">Start - End:</label>
+                    <div class="col-sm-14" id="poster_t1" style="text-align:left">From: Thursday, August 15, 2019 - 8:00am
                             </div>
-                        </tr>
-                    </td>
-                    <td>
-                        <tr style="height: 200px; overflow-y: scroll;">
-                            <h5>Date&time:</h5>
-                            <div id="poster_datetime">Thursday, August 15, 2019 - 8:00am
+                    <div class="col-sm-14" id="poster_t2" style="text-align:left">To: Thursday, August 15, 2019 - 8:00am
                             </div>
-                        </tr>
-                    </td>
-                    <td>
-                        <tr style="height: 200px; overflow-y: scroll;">
-                            <h5>Location:</h5>
-                            <div id="poster_location">Hyatt Regency Bellevue Bellevue, WA
+
+                    <label class="col-sm-8 col-form-label">Location:</label>
+
+                    <div class="col-sm-14" id="poster_bld">Hyatt Regency Bellevue
                             </div>
-                        </tr>
-                    </td>
-                </table>
+                    <div class="col-sm-14" id="poster_addr">Bellevue, WA
+                            </div>
+                    <div></div>
+                </form>
             </div>
             <div id="map"></div>
         </div>
