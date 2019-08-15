@@ -39,6 +39,27 @@ app.get("/posterinfor", async (req, res) => {
   res.send(objResult);
 });
 
+app.get("/vendorinfor", async (req, res) => {
+  console.log("query vendor:", req.query.user);
+  console.log("query infor:", req.query.infor);
+
+  var objReturn = {};
+  if (req.query.infor === "buildings") {
+    var objBLinfor = JSON.parse(
+      fs.readFileSync(__dirname + "/vendor/Building_Locations.json")
+    );
+    objReturn = objBLinfor["Building_Locations"].map(blItem => {
+      return blItem["abbr"] + " - " + blItem["building_name"];
+    });
+  } else if (req.query.infor === "departments") {
+    var objBLinfor = JSON.parse(
+      fs.readFileSync(__dirname + "/vendor/departments.json")
+    );
+    objReturn = objBLinfor["Departments"];
+  }
+  res.send(objReturn);
+});
+
 app.get("/index", (req, res) => {
   fs.readFile(__dirname + "/view/index.html", async (err, data) => {
     res.writeHead(200, {
