@@ -80,16 +80,16 @@
 
             <div class="form-group row mb-3">
                 <!-- 2nd row -->
-                <label class="col-sm-2 col-form-label">Date:</label>
-                <div class="col-sm-3"><input class="form-control" type="date" name="date"></div>
-                <label class="col-sm-2 col-form-label">Time:</label>
-                <div class="col-sm-4"><input class="form-control" type="time" name="time"></div>
+                <label class="col-sm-2 col-form-label">Start Time:</label>
+                <div class="col-sm-3"><input class="form-control" type="datetime-local" id="time1" name="time1" value=""></div>
+                <label class="col-sm-2 col-form-label">End Time:</label>
+                <div class="col-sm-4"><input class="form-control" type="datetime-local" id="time2" name="time2" value=""></div>
             </div>
 
             <div class="form-group row mb-3">
                 <!-- 3rd row -->
                 <label class="col-sm-2 col-form-label">Description:</label>
-                <div class="col-sm-9"><textarea class="form-control" name="description" id="ta1"></textarea></div>
+                <div class="col-sm-9"><textarea class="form-control" name="description" id="ta1" placeholder="Enter your event description here"></textarea></div>
             </div>
 
         </form>
@@ -114,21 +114,29 @@
         };
 
         $(document).ready(function() {
-            //TODO: add user infor for server to authenticate
             var dropItem = {
                 id: "sel1",
                 arg: "buildings"
             };
-            updateFormOptions(dropItem);
+            updateFormOptions(dropItem); // update building names
             dropItem = {
                 id: "sel2",
                 arg: "departments"
             };
-            updateFormOptions(dropItem);
+            updateFormOptions(dropItem); // update department names
+            var today = new Date();
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            var dateTime = date + 'T' + time;
+            var tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            $("#time1").val(tomorrow.toJSON().slice(0, 11) + "09:00:00");
+            $("#time2").val(tomorrow.toJSON().slice(0, 11) + "10:00:00");
         });
 
 
         function updateFormOptions(dropItem) {
+            //TODO: add user infor for server to authenticate
             var parameters = {
                 user: "dummy",
                 infor: dropItem.arg
