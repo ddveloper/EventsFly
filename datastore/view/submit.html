@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1,
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,
             user-scalable=0" />
-    <meta name="description" content="Show Posters on campus of Portland
+        <meta name="description" content="Show Posters on campus of Portland
             State University">
-    <meta name="author" content="Dawei Zhang">
+        <meta name="author" content="Dawei Zhang">
 
-    <link rel="icon" href="/myico">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!--external plugin for dropbox-->
-    <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
-    <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
-    <style type="text/css">
+        <link rel="icon" href="/myico">
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+            />
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <!--external plugin for dropbox-->
+        <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
+        <link rel="stylesheet"
+            href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
+        <style type="text/css">
         main {
             padding-top: 30px;
         }
@@ -37,80 +42,90 @@
             background-image: url("/view/icon.png");
         } */
     </style>
-</head>
+    </head>
 
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="/index">EventsFly</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="/index">EventsFly</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/index">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-    <!-- Begin page content -->
-    <main role="main" class="container">
-        <h1 class="mt-5">Events Details:</h1>
-        <form id="infor-form" action="/submit" method="post" style="border: 2px solid #bbb; padding-left:20px; padding-top:
+        <!-- Begin page content -->
+        <main role="main" class="container">
+            <h1 class="mt-5">Events Details:</h1>
+            <form id="infor-form" action="/submit" method="post" style="border:
+                2px solid #bbb; padding-left:20px; padding-top:
                 15px">
-            <div class="form-group row mb-3">
-                <!-- 1st row -->
-                <label class="col-sm-2 col-form-label">Location:</label>
-                <div class="col-sm-3">
-                    <select class="form-control" id="sel2" name="department">
+                <div class="form-group row mb-3">
+                    <!-- 1st row -->
+                    <label class="col-sm-2 col-form-label">Location:</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="sel2"
+                            name="department">
                             <!-- TODO: add placeholder "Buildings"-->
                             <option>KMC Building</option>
                             <option>Cramer Hall</option>
                             <option>Engineering Building</option>
                             <option>FAB</option>
                         </select>
-                </div>
+                    </div>
 
-                <label class="col-sm-2 col-form-label">Departments:</label>
-                <div class="col-sm-4">
-                    <select class="form-control" id="sel1" name="department">
+                    <label class="col-sm-2 col-form-label">Departments:</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="sel1"
+                            name="department">
                             <!-- TODO: add placeholder "departments"-->
                             <option>Academic & Research Computing</option>
                             <option>Business Accelerator</option>
                         </select>
+                    </div>
                 </div>
-            </div>
 
+                <div class="form-group row mb-3">
+                    <!-- 2nd row -->
+                    <label class="col-sm-2 col-form-label">Date:</label>
+                    <div class="col-sm-3"><input class="form-control"
+                            type="date" name="date"></div>
+                    <label class="col-sm-2 col-form-label">Time:</label>
+                    <div class="col-sm-4"><input class="form-control"
+                            type="time" name="time"></div>
+                </div>
+
+                <div class="form-group row mb-3">
+                    <!-- 3rd row -->
+                    <label class="col-sm-2 col-form-label">Description:</label>
+                    <div class="col-sm-9"><textarea class="form-control"
+                            name="description" id="ta1"></textarea></div>
+                </div>
+
+            </form>
+            <br />
+            <form action="/upload" method="post" enctype="multipart/form-data"
+                class="dropzone" id="my-awesome-dropzone">
+            </form>
+            <br />
+            <!-- TODO: disable "Submit" button before file uploaded -->
             <div class="form-group row mb-3">
-                <!-- 2nd row -->
-                <label class="col-sm-2 col-form-label">Date:</label>
-                <div class="col-sm-3"><input class="form-control" type="date" name="date"></div>
-                <label class="col-sm-2 col-form-label">Time:</label>
-                <div class="col-sm-4"><input class="form-control" type="time" name="time"></div>
+                <div class="col-sm-8"><button type="submit" form="infor-form"
+                        class="btn btn-primary">submit</button></div>
             </div>
+        </main>
 
-            <div class="form-group row mb-3">
-                <!-- 3rd row -->
-                <label class="col-sm-2 col-form-label">Description:</label>
-                <div class="col-sm-9"><textarea class="form-control" name="description" id="ta1"></textarea></div>
-            </div>
-
-        </form>
-        <br />
-        <form action="/upload" method="post" enctype="multipart/form-data" class="dropzone" id="my-awesome-dropzone">
-        </form>
-        <br />
-        <!-- TODO: disable "Submit" button before file uploaded -->
-        <div class="form-group row mb-3">
-            <div class="col-sm-8"><button type="submit" form="infor-form" class="btn btn-primary">submit</button></div>
-        </div>
-    </main>
-
-    <script>
+        <script>
         // "myAwesomeDropzone" is the camelized version of the HTML element's ID
         Dropzone.options.myAwesomeDropzone = {
             paramName: "file", // The name that will be used to transfer the file
@@ -120,6 +135,6 @@
             }
         };
     </script>
-</body>
+    </body>
 
 </html>

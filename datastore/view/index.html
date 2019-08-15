@@ -1,31 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
-    <meta name="description" content="Show Posters on campus of Portland State University">
-    <meta name="author" content="Dawei Zhang">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1,
+            user-scalable=0" />
+        <meta name="description" content="Show Posters on campus of Portland
+            State University">
+        <meta name="author" content="Dawei Zhang">
 
-    <link rel="icon" href="/myico">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" />
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <style type="text/css">
+        <link rel="icon" href="/myico">
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+            />
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript"
+            src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <style type="text/css">
         main {
             display: table-row;
         }
-
-        /* http://www.corelangs.com/css/box/hover.html */
+        
+        /* http://www.corelangs.com/css/box/hover.html */        
         .show-imgs:hover {
             -moz-box-shadow: 0 0 15px #aaa;
             -webkit-box-shadow: 0 0 15px #aaa;
             box-shadow: 0 0 15px #aaa;
         }
-
         /* https://stackoverflow.com/questions/6334495/center-a-div-in-the-middle-of-the-screen-even-when-the-page-is-scrolled-up-or */
         .PopupPanel {
             /* border: solid 1px black; */
@@ -38,75 +40,110 @@
             width: 310px;
             margin-right: 10px;
         }
-
         /* #navigation, TODO: change banner image
         .navbar .navbar-default {
             background-image: url("/view/icon.png");
         } */
     </style>
-</head>
+    </head>
 
-<body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <!--TODO: add pretty icon in here-->
-        <a class="navbar-brand" href="/index">EventsFly</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/submit">Submit</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                </li>
-            </ul>
-            <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log In</button>
-            </form>
-        </div>
-    </nav>
-
-    <!-- compensate the nav bar height -->
-    <hr class="mt-2 mb-5" />
-
-    <!-- Begin page content -->
-    <main class="container">
-        <!-- Left Panel -->
-        <div style="display: table-cell; padding: 20px">
-            <div class=" row text-center text-lg-left">
-                {{ #img_links }}
-                <div class="image-show col-lg-3 col-md-4 col-6" alt="Responsive image" data-toggle="modal"
-                    data-target="#myModal">
-                    <a href="#" class="d-block mb-4 h-100">
-                        <img class="show-imgs img-fluid img-thumbnail img-click" id="img{{ index }}" alt=""
-                            src={{ link }}>
-                    </a>
-                </div>
-                {{ /img_links }}
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <!--TODO: add pretty icon in here-->
+            <a class="navbar-brand" href="/index">EventsFly</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/submit">Submit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                </ul>
+                <form class="form-inline mt-2 mt-md-0">
+                    <input class="form-control mr-sm-2" type="text"
+                        placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2
+                        my-sm-0" type="submit">Log In</button>
+                </form>
             </div>
-        </div>
+        </nav>
 
-        <!-- Middle Bar -->
-        <div style="width: 3px; display: table-cell; border:1px solid #ccc"></div>
+        <!-- compensate the nav bar height -->
+        <hr class="mt-2 mb-5" />
 
-        <!-- Right Panel -->
-        <div style="width: 350px; display: table-cell; padding: 10px; vertical-align: middle"> </div>
-        <div class="PopupPanel">
+        <!-- Begin page content -->
+        <main class="container">
+            <!-- Left Panel -->
+            <div style="display: table-cell; padding: 20px">
+                <div class="row text-center text-lg-left">
+                    {{ #img_links }}
+                    <div class="image-show col-lg-3 col-md-4 col-6"
+                        alt="Responsive image" data-toggle="modal"
+                        data-target="#myModal">
+                        <a href="#" class="d-block mb-4 h-100">
+                            <img class="show-imgs img-fluid img-thumbnail
+                                img-click" id="img{{ index }}" alt="" src={{
+                                link }}>
+                        </a>
+                    </div>
+                    {{ /img_links }}
+                </div>
+            </div>
 
-        </div>
-    </main>
+            <!-- Middle Bar -->
+            <div style="width: 3px; display: table-cell; border:1px solid #ccc"></div>
+            <!-- Right Panel -->
+            <div style="width: 350px; display: table-cell; padding: 10px;
+                vertical-align: middle"> </div>
+            <div class="PopupPanel">
+                <div>
+                    <!--TODO: use bootstrap layout to render this table -->
+                    <table>
+                        <td>
+                            <tr style="height: 200px; overflow-y: scroll;">
+                                <h5>Description:</h5>
+                                <div id="poster_description">Idea Exchanges
+                                    provide education, networking, and deal
+                                    making on a smaller scale than Regional Deal
+                                    Making events. Meet with local colleagues in
+                                    the area.
+                                </div>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr style="height: 200px; overflow-y: scroll;">
+                                <h5>Date&time:</h5>
+                                <div id="poster_datetime">Thursday, August 15,
+                                    2019 - 8:00am
+                                </div>
+                            </tr>
+                        </td>
+                        <td>
+                            <tr style="height: 200px; overflow-y: scroll;">
+                                <h5>Location:</h5>
+                                <div id="poster_location">Hyatt Regency Bellevue
+                                    Bellevue, WA
+                                </div>
+                            </tr>
+                        </td>
+                    </table>
+                </div>
+            </div>
+        </main>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
+        <script type="text/javascript">
+        $(document).ready(function() {
             $(".img-click").click(() => {
                 //BUGBUG: assign only current "src", not first found
                 var pathStr = $(".img-click").attr("src");
                 pathStr = String(pathStr).substring(String(pathStr).indexOf("upload_"));
-                var parameters = { 
+                var parameters = {
                     path: pathStr
                 };
                 $.get('/posterinfor', parameters, (data) => {
@@ -115,6 +152,6 @@
             });
         });
     </script>
-</body>
+    </body>
 
 </html>
