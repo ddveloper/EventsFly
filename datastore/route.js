@@ -12,6 +12,7 @@ const fs = require("fs");
 
 const database = require("./datastore");
 const storage = require("./storage");
+const vision = require("./ggvision");
 
 const app = express();
 app.enable("trust proxy");
@@ -90,11 +91,15 @@ app.get("/submit", (req, res) => {
   res.sendFile(__dirname + "/view/submit.html");
 });
 
+let lastImgLabels = [];
+app.get("/imglabels", async (req, res) => {
+  res.send(lastImgLabels);
+});
+
 app.post("/upload", (req, res) => {
   new formidable.IncomingForm()
     .parse(req)
-    .on("fileBegin", (name, file) => {
-    })
+    .on("fileBegin", (name, file) => {})
     .on("field", (name, field) => {
       console.log("Field", name, field);
     })
@@ -104,6 +109,8 @@ app.post("/upload", (req, res) => {
         String(file.path).indexOf("upload_")
       );
       fileList.push({ path: hashName, name: file.name });
+      // get Google Vision Labels
+      lastImgLabels = await vision.getLabels(file.path);
       storage.insertFile(file.path);
       //fs.unlinkSync(file.path);
     })

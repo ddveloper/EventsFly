@@ -28,6 +28,13 @@
         .form-control {
             margin-top: 12px;
         }
+        
+        .rainbow-text {
+            background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-top: 0px;
+        }
         /* .dz-default{ TODO: add dot-line out of drop box
             border: solid 1px black;
             margin: 0px;
@@ -99,7 +106,8 @@
         <br />
         <!-- TODO: disable "Submit" button before file uploaded -->
         <div class="form-group row mb-3">
-            <div class="col-sm-8"><button type="submit" form="infor-form" class="btn btn-primary">submit</button></div>
+            <div class="col-sm-2"><button type="submit" form="infor-form" class="btn btn-primary">submit</button></div>
+            <label class="col-sm-14 col-form-label rainbow-text" id="google-labels"></label>
         </div>
     </main>
 
@@ -110,6 +118,9 @@
             maxFilesize: 3, // MB
             accept: (file, done) => {
                 done();
+                $.get('/imglabels', {}, (data) => {
+                    $("#google-labels").text(data.join(', '));
+                });
             }
         };
 
