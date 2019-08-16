@@ -81,7 +81,7 @@
                 </li>
             </ul>
             <form class="form-inline mt-2 mt-md-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search"> -->
                 <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </form>
         </div>
@@ -97,7 +97,7 @@
             <div class="row text-center text-lg-left">
                 {{ #img_links }}
                 <div class="image-show col-lg-3 col-md-4 col-6" alt="Responsive image" data-toggle="modal" data-target="#myModal">
-                    <a class="d-block mb-4 h-100">
+                    <a href="#" class="d-block mb-4 h-100">
                         <img class="show-imgs img-fluid img-thumbnail
                                 img-click" id="img{{ index }}" alt="" src={{ link }}>
                     </a>
@@ -149,6 +149,7 @@
                     console.log(data);
                     updatePanel(data);
                 });
+                return false;
             });
         });
 
