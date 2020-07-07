@@ -1,5 +1,4 @@
 # EventsFly
-Deployed at: https://eventsfly-249021.appspot.com
 
 A web service to interact with events in communities (e.g. Universities, Apartments, Offices, etc.)
 
